@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.hibernate.formation.metier.FormationInter" table="FORMATION_INTER">
+		<id name="id" type="java.lang.Long" column="ID">
+			<generator class="identity" />
+		</id>
+		<property name="nbEntreprises"/>
+	</class>
+</hibernate-mapping>

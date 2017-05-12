@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	
+	<class name="org.hibernate.formation.metier.Formation" table="FORMATION">
+		<id name="id" type="java.lang.Long" column="ID">
+			<generator class="identity" />
+		</id>
+		<discriminator column="Type" type="java.lang.String"/>
+		<property name="theme" column="FORMATION_THEME" />
+		<property name="dateDebut" type="date" column="DATE_DEBUT" />
+		<property name="duree" type="java.lang.Integer" column="duree"/>
+		<many-to-one name="lieu" column="lieu_id" class="org.hibernate.formation.metier.Lieu" cascade="all"/>
+		<set name="formateurs" cascade="all">
+			<key column="formation_id"></key>
+			<one-to-many class="org.hibernate.formation.metier.Formateur"/>
+		</set>
+		<subclass name="org.hibernate.formation.metier.FormationInter" discriminator-value="FORMATION_INTER">
+			<property name="nbEntreprises" type="java.lang.Integer"/>
+		</subclass>
+		<subclass name="org.hibernate.formation.metier.FormationIntra" discriminator-value="FORMATION_INTRA">
+			<property name="niveaupersonnalisaionSupports" type="java.lang.String"/>
+		</subclass>
+	</class>
+</hibernate-mapping>
